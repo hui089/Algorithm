@@ -1,35 +1,36 @@
+//Multiple pointers - count unique value 고유값 찾기
 
-function same(arr1,arr2){ //arr1,arr2 배열선언 필요없이 배열이라고 생각하고 푼다 in js
-            //aab  baa
-    //예외처리
-    if(arr1.length != arr2.length)
-        return false;
-    
-    let frequencyCounter1={};
-    
-    for(let i=0; i<arr1.length;i++){
-        //frequency에 넣기
-        let con = arr1[i];
-        //존재하면 fre +1 , 존재하지 않으면 fre >> 삼항연산자 사용
-        frequencyCounter1[con] ? frequencyCounter1[con]+=1 : frequencyCounter1[con]=1;       
-       
-    }
- 
-    //arr2[i]가 fre에 있으면 fre[i]-1 없으면 return false , while arr2의 길이만큼
+/*1112334456
+  입력값은 정렬되어있어야 함
+  ij
+  1)같으면 j++
+  2)비교 후 다르면
+    1.i++ 
+    2.i의 자리값에 j값으로 복사
+    3.j++
 
-    for(let j=0; j<arr2.length;j++){
-        let con2 = arr2[j];
-        if (! frequencyCounter1[con2] ) //존재하지 않으면
-            return false;
-        else
-            frequencyCounter1[con2] -=1; //존재하면 빈도수 줄이기   
-           
-    }
-    
-    return true;
+*/
 
+/*
+countUniqueValues([1,1,1,1,1,2]) //2
+countUniqueValues([])//0
+countUniqueValues([-2,-1,-1,0,1]) //4
+
+*/
+
+//time conplexity: O(n)
+function countUniqueValues(arr){
+    var i=0;
+    if(arr[0] == null) {console.log(-1);return -1;}
+    for(var j=1;j<arr.length;j++){
+        if(arr[i] != arr[j]){
+            i++;
+            arr[i]=arr[j];
+            //j값 증가는 for문에서 처리
+        }
+
+  console.log(i); //i의 위치 print
+    } 
 }
 
-same('aab','baa');
-
-
+countUniqueValues([1,3,4,4,4,4,5]);
